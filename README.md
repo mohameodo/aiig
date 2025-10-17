@@ -2,39 +2,75 @@
 
 The power of AI in a clean, simple interface. (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
 
-This is a Next.js application bootstrapped with `create-next-app`.
+Nexiloop is a modern, open-source chat application that provides a seamless and intuitive interface for interacting with multiple AI models. Built with Next.js and shadcn/ui, it offers a clean and responsive user experience, allowing you to switch between powerful language models like OpenAI's GPT-3.5 and Google's Gemini. The application is designed to be deployed on the edge, ensuring fast and reliable performance with Cloudflare Workers.
+
+## Features
+
+- **Multi-Model Support**: Switch between OpenAI and Gemini models on the fly.
+- **Clean and Responsive UI**: A polished and intuitive chat interface built with shadcn/ui.
+- **Cloudflare Workers Compatibility**: Optimized for deployment on the edge for low-latency interactions.
+- **Authentication**: (In progress) Secure user authentication with `better-auth` and PostgreSQL.
+- **Persistent Chat History**: (In progress) Save and retrieve your chat history from a PostgreSQL database.
 
 ## Getting Started
 
-First, run the development server:
+To get started with Nexiloop, you'll need to have Node.js and npm installed.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone the repository:**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   git clone https://github.com/your-username/nexiloop.git
+   cd nexiloop
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. **Install the dependencies:**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   npm install
+   ```
+
+3. **Set up your environment variables:**
+
+   Create a `.env.local` file by copying the `.env.example` file:
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+   Then, fill in the required API keys and database URL in the `.env.local` file.
+
+4. **Run the development server:**
+
+   ```bash
+   npm run dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Deployment
+
+This application is optimized for deployment on Cloudflare Workers. To deploy your own instance, you can use the `wrangler` CLI.
+
+1. **Build the application:**
+
+   ```bash
+   npm run build
+   ```
+
+2. **Deploy to Cloudflare Workers:**
+
+   ```bash
+   npx wrangler deploy
+   ```
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used in this project, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [shadcn/ui](https://ui.shadcn.com/) - learn about the UI components used in this project.
+- [Cloudflare Workers](https://workers.cloudflare.com/) - learn about deploying applications on the edge.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
