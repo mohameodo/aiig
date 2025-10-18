@@ -5,15 +5,30 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useSession, signIn } from 'next-auth/react';
 import { useState } from 'react';
 
 export function Chat() {
+  const { data: session, status } = useSession();
   const [model, setModel] = useState('openai');
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     body: {
       model,
     },
   });
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+
+  if (status === 'unauthenticated') {
+    return (
+      <div className="flex flex-col items-center justify-center h-full">
+        <p className="mb-4">You must be logged in to use the chat.</p>
+        <Button onClick={() => signIn('google')}>Login with Google</Button>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-full">
@@ -43,8 +58,8 @@ export function Chat() {
               </div>
               {m.role === 'user' && (
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src="/placeholder-user.jpg" />
-                  <AvatarFallback>U</AvatarFallback>
+                  <AvatarImage src={session?.user?.image ?? '/placeholder-user.jpg'} />
+                  <AvatarFallback>{session?.user?.name?.[0] ?? 'U'}</AvatarFallback>
                 </Avatar>
               )}
             </div>
